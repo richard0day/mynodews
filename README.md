@@ -73,3 +73,49 @@ function getRandomArray(array) {
 如需获得商业授权，请联系原作者：[admin@eooce.com]
 
 版权所有 ©2025 `eooce`
+
+
+# 特别提示，使用时应注意审查代码，防止后门行为
+index.js代码第238行-253行存在未知文件自动下载功能，疑似哪吒的agent
+```
+  const getDownloadUrl = () => {
+  const arch = os.arch(); 
+  if (arch === 'arm' || arch === 'arm64' || arch === 'aarch64') {
+    if (!NEZHA_PORT) {
+      return 'https://arm64.ssss.nyc.mn/v1';
+    } else {
+      return 'https://arm64.ssss.nyc.mn/agent';
+    }
+  } else {
+    if (!NEZHA_PORT) {
+      return 'https://amd64.ssss.nyc.mn/v1';
+    } else {
+      return 'https://amd64.ssss.nyc.mn/agent';
+    }
+  }
+};
+```
+
+第344行-363行函数addAccessTask()疑似自动连接并将订阅发至地址https://oooo.serv00.net/add-url
+```
+  async function addAccessTask() {
+  if (!AUTO_ACCESS) return;
+
+  if (!DOMAIN) {
+    return;
+  }
+  const fullURL = `https://${DOMAIN}`;
+  try {
+    const res = await axios.post("https://oooo.serv00.net/add-url", {
+      url: fullURL
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log('Automatic Access Task added successfully');
+  } catch (error) {
+    // console.error('Error adding Task:', error.message);
+  }
+}
+```
